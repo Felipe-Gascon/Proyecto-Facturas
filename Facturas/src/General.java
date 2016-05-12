@@ -20,7 +20,6 @@ public class General {
 		{
 			System.out.println("Conexion Exitosa");
 			muestraVentana();
-		//	muestraConexion();
 		}
 		else
 		{
@@ -50,23 +49,5 @@ public class General {
 		vR.setVisible(true);
 	}
 	
-	/*public void muestraConexion()
-	{
-		if(usuario==null)
-		{
-			vR.Mensajes("Error con el Usuario");
-		}
-		else
-		{
-
-
-			vm.setVisible(true);
-		}
-	}*/
 	
-	public void compruebaUsuario(String usuario,char[]contraseña)
-	{
-		
-
-	}
 }
