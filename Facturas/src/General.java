@@ -11,7 +11,6 @@ public class General {
 	private vRegistro vR;
 
 	private vMaquinaria vm;
-	private Usuario user=null;
 
 	private General() 
 	{
