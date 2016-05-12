@@ -31,6 +31,7 @@ public class vMaquinaria extends JFrame {
 
 
 	public vMaquinaria(DefaultTableModel dtm2) {
+		setResizable(false);
 		//System.out.println("constructor sense parametres");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

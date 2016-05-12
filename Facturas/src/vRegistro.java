@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -33,6 +34,7 @@ public class vRegistro extends JFrame {
 
 	
 	public vRegistro(ArrayList<String> usuarios) {
+		setResizable(false);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -55,21 +57,30 @@ public class vRegistro extends JFrame {
 		
 		usuario = new JComboBox();
 		usuario.setBounds(175, 63, 86, 20);
-		add(usuario);
+		getContentPane().add(usuario);
+		
 		
 		txtPass = new JPasswordField();
 		txtPass.setBounds(175, 141, 86, 20);
-		add(txtPass);
+		getContentPane().add(txtPass);
 		
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				
-				General.getInstance().compruebaUsuario((String) usuario.getSelectedItem(), txtPass.getPassword());
-				vMaquinaria vm= new vMaquinaria(dtm);
-				vm.setVisible(true);
+				General.getInstance();
 				
-				vRegistro.this.dispose();
+				if(usuario.getSelectedItem().toString().equalsIgnoreCase("Felipe")&&txtPass.getText().equals("holahola"))
+				{
+					vMaquinaria vm= new vMaquinaria(dtm);
+					vm.setVisible(true);
+					 
+					vRegistro.this.dispose();
+				}
+				else{
+					msjInfo.setText("Usuario no Permitido");
+				}
 			}
 		});
 		btnEntrar.setBounds(54, 227, 89, 23);
