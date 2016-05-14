@@ -64,18 +64,19 @@ public class vRegistro extends JFrame {
 		txtPass.setBounds(175, 141, 86, 20);
 		getContentPane().add(txtPass);
 		
+		
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				
-				General.getInstance();
 				
+				General.getInstance();
+				// esto lo hice comprobacion manual esta mal
 				if(usuario.getSelectedItem().toString().equalsIgnoreCase("Felipe")&&txtPass.getText().equals("holahola"))
 				{
 					vMaquinaria vm= new vMaquinaria(dtm);
 					vm.setVisible(true);
-					 
 					vRegistro.this.dispose();
 				}
 				else{

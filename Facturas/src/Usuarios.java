@@ -11,19 +11,62 @@ public class Usuarios {
 	Statement instruccion = null;
 	ResultSet conjuntoResultados = null;
 	//Consultas SQL
+	vRegistro vr ;
+	 
 	private static String Lista_usuarios="SELECT * FROM usuarios";
+	
+	
 
 	public Usuarios()
 	{
 		//creamos la conexion con la Base de Datos
 		facturas = ConexionDB.getInstance();
-		
+
 	}
+	public ArrayList<String> getContraseña()
+	{
+		ArrayList<String> contraseñas = new ArrayList<String>();
+		
+		//preparo la consulta
+		try {
+			instruccion = facturas.getConexion().createStatement();
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		try {
+			conjuntoResultados = instruccion.executeQuery("Select Contraseña from usuarios");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		//Recorremos los resultados y los almacenamos en un ArrayList
+		try {
+			while(conjuntoResultados.next())
+			{
+				try {
+					contraseñas.add(conjuntoResultados.getString("Contraseña"));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		
+		return contraseñas;
+		
+
+}
+
 
 	//Recojo los usuarios de la BBDD
 	public ArrayList<String> getUsuarios()
 	{
-		int i=0;
 		ArrayList<String> usuarios = new ArrayList<String>();
 		try {
 			System.out.println("usuarios bbdd");
@@ -34,7 +77,7 @@ public class Usuarios {
 			while(conjuntoResultados.next())
 			{
 				usuarios.add(conjuntoResultados.getString("Nombre"));
-				System.out.println(usuarios.get(i)); i++;
+				
 			}
 		}catch( SQLException excepcionSql ) {
 			excepcionSql.printStackTrace();

@@ -55,7 +55,7 @@ public class vMaquinaria extends JFrame {
 		datos= new JTable(dtm);
 
 		scrollPane = new JScrollPane(datos);
-		scrollPane.setBounds(5, 5, 419, 211);
+		scrollPane.setBounds(5, 60, 419, 156);
 		contentPane.add(scrollPane);
 		contentPane.add(btnAadirDatos);
 
@@ -74,6 +74,4 @@ public class vMaquinaria extends JFrame {
 		}
 
 	}
-
-
 }
