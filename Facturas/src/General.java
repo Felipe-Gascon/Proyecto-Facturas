@@ -14,7 +14,7 @@ public class General {
 
 	private General() 
 	{
-		facturas=ConexionDB.getInstance("localhost", "facturas", "Felipe", "");
+		facturas=ConexionDB.getInstance("localhost", "facturas", "root", "");
 
 		if(facturas.connectDB()==true)
 		{

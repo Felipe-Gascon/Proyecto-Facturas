@@ -6,14 +6,20 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.GridLayout;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -27,6 +33,10 @@ public class vMaquinaria extends JFrame {
 	Object[] datosTabla = new Object[Columnas.length];
 	JTable datos;
 	JScrollPane scrollPane;
+	Maquinaria ma = new Maquinaria();
+	ConexionDB facturas;
+	private static String Trabajos = "Trabajos_Maq";
+	private static String Coste = "Precios";
 
 
 
@@ -72,6 +82,43 @@ public class vMaquinaria extends JFrame {
 			//System.out.println("Afegint dades al dtm");
 			this.dtm.addColumn(Columnas[column]);
 		}
+		muestraDatos(dtm);
 
 	}
+
+	public void muestraDatos(DefaultTableModel miDTM)
+	{
+		ResultSet rs = ma.consulta();
+
+		if (rs!=null)
+		{
+			try
+			{
+				while(rs.next())
+				{
+					Object filas[] = new Object[2];
+					filas[0] = rs.getString("Trabajos_Maq");
+					filas[1] = rs.getString("Precios");
+					miDTM.addRow(filas);
+				}
+			}
+			catch (SQLException e) {
+				// 
+				e.printStackTrace();
+			}
+			finally
+			{
+				try
+				{
+					rs.close();
+				}
+				catch (SQLException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+
 }
