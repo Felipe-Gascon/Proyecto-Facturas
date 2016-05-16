@@ -22,6 +22,7 @@ import java.awt.GridLayout;
 import java.awt.Point;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Hashtable;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -71,6 +72,9 @@ public class vMaquinaria extends JFrame {
 		btnAadirDatos.setBounds(5, 227, 103, 23);
 		btnAadirDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				vPrecios vp = new vPrecios();
+				vp.setVisible(true);
 			}
 		});
 		contentPane.setLayout(null);
@@ -140,7 +144,8 @@ public class vMaquinaria extends JFrame {
 				{
 					String valor;
 					valor =  (String) datos.getValueAt(datos.getSelectedRow(), 1);
-					//System.out.println(valor);
+
+					System.out.println(valor);
 					
 					
 				}
@@ -153,7 +158,7 @@ public class vMaquinaria extends JFrame {
 
 	public void muestraDatos(DefaultTableModel miDTM)
 	{
-		ResultSet rs = ma.consulta();
+		/*ResultSet rs = ma.consulta();
 
 		if (rs!=null)
 		{
@@ -164,8 +169,10 @@ public class vMaquinaria extends JFrame {
 					Object filas[] = new Object[2];
 					filas[0] = rs.getString("Trabajos_Maq");
 					filas[1] = rs.getString("Precios");
-					miDTM.addRow(filas);
+					//miDTM.addRow(filas);
+				
 				}
+					
 			}
 			catch (SQLException e) {
 				// 
@@ -182,6 +189,6 @@ public class vMaquinaria extends JFrame {
 					e.printStackTrace();
 				}
 			}
-		}
+		}*/
 	}
 }
