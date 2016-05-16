@@ -140,7 +140,9 @@ public class vMaquinaria extends JFrame {
 				{
 					String valor;
 					valor =  (String) datos.getValueAt(datos.getSelectedRow(), 1);
-					System.out.println(valor);
+					//System.out.println(valor);
+					
+					
 				}
 			}
 		});
