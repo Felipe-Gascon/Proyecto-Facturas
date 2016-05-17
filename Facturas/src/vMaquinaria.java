@@ -33,24 +33,22 @@ import javax.swing.JTextField;
 public class vMaquinaria extends JFrame {
 
 	private JPanel contentPane;
-	DefaultTableModel dtm=null;
+	DefaultTableModel dtm=new DefaultTableModel();
 	String Columnas[]={"Trabajos_Maq","Precios","Subtotal"};
 	Object[] datosTabla = new Object[Columnas.length];
 	JTable datos;
 	JScrollPane scrollPane;
 	Maquinaria ma = new Maquinaria();
-	ConexionDB facturas;
-	@SuppressWarnings("unused")
-	private static String Trabajos = "Trabajos_Maq";
-	@SuppressWarnings("unused")
-	private static String Coste = "Precios";
+	
+	
 	private JTextField textNom;
-	private JTextField textSup;
+	public JTextField textSup;
 	private JLabel lblAo;
 	private JTextField txtYear;
 	private final JLabel lblNewLabel = new JLabel("Total");
 	private JTextField txtTot;
 
+	private vPrecios vp = new vPrecios(dtm);
 
 
 	public vMaquinaria(DefaultTableModel dtm2) {
@@ -72,8 +70,8 @@ public class vMaquinaria extends JFrame {
 		btnAadirDatos.setBounds(5, 227, 103, 23);
 		btnAadirDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				vPrecios vp = new vPrecios();
+				String sup = textSup.getText();
+				System.out.println(sup);
 				vp.setVisible(true);
 			}
 		});
@@ -132,26 +130,13 @@ public class vMaquinaria extends JFrame {
 			//System.out.println("Afegint dades al dtm");
 			this.dtm.addColumn(Columnas[column]);
 		}
-		muestraDatos(dtm);
 		
-		datos.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent Mouse_evt)
-			{
-				JTable tabla = (JTable) Mouse_evt.getSource();
-				Point point = Mouse_evt.getPoint();
-				int row = tabla.rowAtPoint(point);
-				if(Mouse_evt.getClickCount()==2)
-				{
-					String valor;
-					valor =  (String) datos.getValueAt(datos.getSelectedRow(), 1);
-
-					System.out.println(valor);
-					
-					
-				}
-			}
-		});
-
+		
+	//	muestraDatos(dtm);
+		
+		
+		
+		
 	}
 	
 
