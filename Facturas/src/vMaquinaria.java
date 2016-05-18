@@ -33,22 +33,23 @@ import javax.swing.JTextField;
 public class vMaquinaria extends JFrame {
 
 	private JPanel contentPane;
-	DefaultTableModel dtm=new DefaultTableModel();
+	DefaultTableModel dtm=null;
 	String Columnas[]={"Trabajos_Maq","Precios","Subtotal"};
 	Object[] datosTabla = new Object[Columnas.length];
 	JTable datos;
 	JScrollPane scrollPane;
 	Maquinaria ma = new Maquinaria();
-	
+	public String txt;
+
 	
 	private JTextField textNom;
-	public JTextField textSup;
+	private JTextField textSup;
 	private JLabel lblAo;
-	private JTextField txtYear;
+	private JTextField txtYear; 
 	private final JLabel lblNewLabel = new JLabel("Total");
 	private JTextField txtTot;
 
-	private vPrecios vp = new vPrecios(dtm);
+	private vPrecios vp;
 
 
 	public vMaquinaria(DefaultTableModel dtm2) {
@@ -70,8 +71,9 @@ public class vMaquinaria extends JFrame {
 		btnAadirDatos.setBounds(5, 227, 103, 23);
 		btnAadirDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String sup = textSup.getText();
-				System.out.println(sup);
+				//obtenerJtxt();
+				vp=new vPrecios(dtm2);
+				
 				vp.setVisible(true);
 			}
 		});
@@ -134,46 +136,15 @@ public class vMaquinaria extends JFrame {
 		
 	//	muestraDatos(dtm);
 		
-		
+	
 		
 		
 	}
 	
 
 
-	public void muestraDatos(DefaultTableModel miDTM)
+	/*public String obtenerJtxt()
 	{
-		/*ResultSet rs = ma.consulta();
-
-		if (rs!=null)
-		{
-			try
-			{
-				while(rs.next())
-				{
-					Object filas[] = new Object[2];
-					filas[0] = rs.getString("Trabajos_Maq");
-					filas[1] = rs.getString("Precios");
-					//miDTM.addRow(filas);
-				
-				}
-					
-			}
-			catch (SQLException e) {
-				// 
-				e.printStackTrace();
-			}
-			finally
-			{
-				try
-				{
-					rs.close();
-				}
-				catch (SQLException e)
-				{
-					e.printStackTrace();
-				}
-			}
-		}*/
-	}
+		return textSup.getText();
+	}*/
 }

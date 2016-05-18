@@ -34,7 +34,7 @@ public class vPrecios extends JFrame {
 	 */
 
 
-	public vPrecios(DefaultTableModel dtm1) {
+	public vPrecios(DefaultTableModel miDTM) {
 		trabajos = maquinaria.getTrabajos();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,7 +43,11 @@ public class vPrecios extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		if (dtm2s==null){
+			miDTM=new DefaultTableModel();
+		}else{
+			miDTM=dtm2s;
+		}
 		comboTrabajos = new JComboBox();
 
 		comboTrabajos.addActionListener(new ActionListener() {
@@ -66,9 +70,6 @@ public class vPrecios extends JFrame {
 		lblTrabajos.setBounds(10, 33, 161, 20);
 		contentPane.add(lblTrabajos);
 
-		String t = vm.textSup.getText();
-		System.out.println(t);
-
 
 
 
@@ -81,7 +82,10 @@ public class vPrecios extends JFrame {
 			 
 				System.out.println(value);
 
-				
+
+			//	String t = vm.txt;
+			//	System.out.println(t);
+
 
 				vPrecios.this.dispose();
 			}
@@ -89,6 +93,7 @@ public class vPrecios extends JFrame {
 		btnNewButton.setBounds(118, 219, 89, 31);
 		contentPane.add(btnNewButton);
 		ponTrabajos();
+		//copiarTexto();
 	}
 
 
@@ -107,14 +112,12 @@ public class vPrecios extends JFrame {
 
 		}
 
-		/*class ItemChangeListener implements ItemListener{
-	    @Override
-	    public void itemStateChanged(ItemEvent event) {
-	       if (event.getStateChange() == ItemEvent.SELECTED) {
-	    	   String tarea = comboTrabajos.getSelectedItem().toString();
-	    	   System.out.println(tarea+ "\t "+ trabajos.get(tarea));
-	       }
-	    }
-	}*/
+	
 	}
+	
+	/*public void copiarTexto()
+	{
+		
+		System.out.println(vm.obtenerJtxt());
+	}*/
 }

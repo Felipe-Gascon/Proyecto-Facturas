@@ -31,7 +31,6 @@ public class vRegistro extends JFrame {
 	private JTextField msjInfo;
 	public ConexionDB facturas;
 
-
 	public vRegistro(ArrayList<String> usuarios) {
 		setResizable(false);
 
