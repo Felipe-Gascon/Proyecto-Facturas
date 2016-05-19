@@ -12,18 +12,18 @@ public class Maquinaria {
 	ResultSet rs = null;
 
 	public Maquinaria() {
-		facturas = ConexionDB.getInstance();
+		this.facturas = ConexionDB.getInstance();
 
 	}
 
 	public Hashtable<String,Float> getTrabajos()
 	{
-	     Hashtable<String,Float> TareasMaquinariaXPrecios=new Hashtable<String, Float>();
+	     Hashtable<String,Float> tareasMaquinariaXPrecios=new Hashtable<String, Float>();
 		
 		//preparo la consulta
 		try{
-			st=facturas.getConexion().createStatement();
-			rs=st.executeQuery("Select Trabajos_Maq, Precios from maquinaria");
+			this.st=facturas.getConexion().createStatement();
+			this.rs=st.executeQuery("Select Trabajos_Maq, Precios from maquinaria");
 
 		}
 		catch (SQLException e2) {
@@ -34,7 +34,7 @@ public class Maquinaria {
 			while(rs.next())
 			{
 				try{
-					TareasMaquinariaXPrecios.put(rs.getString("Trabajos_Maq"),rs.getFloat("Precios"));
+					tareasMaquinariaXPrecios.put(rs.getString("Trabajos_Maq"),rs.getFloat("Precios"));
 				}
 				catch(SQLException e)
 				{
@@ -47,7 +47,7 @@ public class Maquinaria {
 		{
   			e.printStackTrace();
 		}
-		return TareasMaquinariaXPrecios;
+		return tareasMaquinariaXPrecios;
 	}
 	
 	public ArrayList<String> getPrecios()
@@ -55,8 +55,8 @@ public class Maquinaria {
 		ArrayList<String> precios = new ArrayList<String>();
 		//preparo la consulta
 		try{
-			st=facturas.getConexion().createStatement();
-			rs=st.executeQuery("Select Precios from maquinaria");
+			this.st=facturas.getConexion().createStatement();
+			this.rs=st.executeQuery("Select Precios from maquinaria");
 
 		}
 		catch (SQLException e2) {
@@ -81,6 +81,9 @@ public class Maquinaria {
 			e.printStackTrace();
 		}
 		return precios;
+	}
+	public void mostrarTrabajo(String trabajo){
+		System.out.println(trabajo);
 	}
 }
 

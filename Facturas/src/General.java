@@ -8,9 +8,10 @@ public class General {
 	private static General instance = null;
 	ConexionDB facturas;
 	DefaultTableModel dtm;
-	private vRegistro vR;
+	private VRegistro vR;
 
-	private vMaquinaria vm;
+	@SuppressWarnings("unused")
+	private VMaquinaria vm;
 
 	private General() 
 	{
@@ -45,7 +46,7 @@ public class General {
 		Usuarios usu=new Usuarios();
 		ArrayList<String> usuarios = usu.getUsuarios();
 		
-		vR = new vRegistro(usuarios);
+		vR = new VRegistro(usuarios);
 		vR.setVisible(true);
 	}
 	

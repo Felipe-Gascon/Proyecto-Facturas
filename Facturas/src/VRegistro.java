@@ -2,14 +2,11 @@
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,18 +17,17 @@ import javax.swing.table.DefaultTableModel;
 
 
 @SuppressWarnings("serial")
-public class vRegistro extends JFrame {
+public class VRegistro extends JFrame {
 	Statement st = null;
 	ResultSet rs = null;
 	private JPanel contentPane;
 	private JPasswordField txtPass;
 	DefaultTableModel dtm = new DefaultTableModel();
-	@SuppressWarnings("rawtypes")
 	JTextField txtUsuario;
 	private JTextField msjInfo;
 	public ConexionDB facturas;
 
-	public vRegistro(ArrayList<String> usuarios) {
+	public VRegistro(ArrayList<String> usuarios) {
 		setResizable(false);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,9 +67,9 @@ public class vRegistro extends JFrame {
 				try{
 					if(usuarios.existe(txtUsuario.getText(), String.valueOf(txtPass.getPassword())))
 					{
-						vMaquinaria vm= new vMaquinaria(dtm);
+						VMaquinaria vm= new VMaquinaria(dtm);
 						vm.setVisible(true);
-						vRegistro.this.dispose();
+						VRegistro.this.dispose();
 					}
 					else{
 						msjInfo.setText("Usuario no Permitido");
@@ -98,7 +94,8 @@ public class vRegistro extends JFrame {
 		contentPane.add(msjInfo);
 		msjInfo.setColumns(10);
 
-		ponUsuarios(usuarios);
+
+
 
 
 	}
@@ -109,17 +106,5 @@ public class vRegistro extends JFrame {
 	}
 	
 	
-
-	@SuppressWarnings("unchecked")
-	public void ponUsuarios(ArrayList<String> usuarios)
-	{System.out.println("usuarios combo");
-	//usuario.removeAllItems();
-	for(String u:usuarios)
-	{
-	//	usuario.addItem(u);
-	}
-	//this.repaint();
-	}
-
 
 }

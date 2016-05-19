@@ -1,10 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -14,28 +11,34 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-
-public class vPrecios extends JFrame {
+@SuppressWarnings("serial")
+public class VPrecios extends JFrame {
 
 	private JPanel contentPane;
+	@SuppressWarnings("rawtypes")
 	JComboBox comboTrabajos;
-	Maquinaria maquinaria = new Maquinaria();
-	
-	
-	Hashtable trabajos;
-	DefaultTableModel dtm2s = new DefaultTableModel();
-	vMaquinaria vm ;
 
+
+
+	@SuppressWarnings("rawtypes")
+	Hashtable trabajos;
+	DefaultTableModel dtm2 = new DefaultTableModel();
+	VMaquinaria vm ;
+	Float superficie;
+	Maquinaria ma;
+
+	public String supe;
 	/**
 	 * Launch the application.
 	 */
 
 
-	public vPrecios(DefaultTableModel miDTM) {
-		trabajos = maquinaria.getTrabajos();
+	@SuppressWarnings("rawtypes")
+	public VPrecios(DefaultTableModel miDTM, float sup) {
+		superficie=sup;
+		ma = new Maquinaria();
+		trabajos = ma.getTrabajos();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -43,10 +46,10 @@ public class vPrecios extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		if (dtm2s==null){
+		if (dtm2==null){
 			miDTM=new DefaultTableModel();
 		}else{
-			miDTM=dtm2s;
+			miDTM=dtm2;
 		}
 		comboTrabajos = new JComboBox();
 
@@ -77,26 +80,35 @@ public class vPrecios extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String tareas = comboTrabajos.getSelectedItem().toString();
-				String value = String.valueOf(trabajos.get(tareas));
+				String value = String.valueOf (trabajos.get(tareas));
+				float valor = Float.parseFloat(value);
 
-			 
-				System.out.println(value);
+				float subtotal = valor*VPrecios.this.superficie;
+				Object filas[] = new Object[3];
+				filas[0]=tareas;
+				filas[1]=valor;
+				filas[2]=subtotal;
+				
+				dtm2.addRow(filas);
+				
+				ma.mostrarTrabajo(tareas);
+				//System.out.println(value);
 
 
-			//	String t = vm.txt;
-			//	System.out.println(t);
 
 
-				vPrecios.this.dispose();
+				VPrecios.this.dispose();
 			}
 		});
 		btnNewButton.setBounds(118, 219, 89, 31);
 		contentPane.add(btnNewButton);
 		ponTrabajos();
 		//copiarTexto();
+	
 	}
 
 
+	@SuppressWarnings("unchecked")
 	public void ponTrabajos( )
 	{
 		String clave;
@@ -106,18 +118,18 @@ public class vPrecios extends JFrame {
 		while(claves.hasMoreElements())
 		{
 			clave = claves.nextElement();
-			System.out.println(clave);
+			//System.out.println(clave);
 			comboTrabajos.addItem(clave);
 
 
 		}
 
-	
+
 	}
-	
+
 	/*public void copiarTexto()
 	{
-		
+
 		System.out.println(vm.obtenerJtxt());
 	}*/
 }

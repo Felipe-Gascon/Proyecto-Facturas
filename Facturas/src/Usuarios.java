@@ -11,7 +11,7 @@ public class Usuarios {
 	Statement instruccion = null;
 	ResultSet conjuntoResultados = null;
 	//Consultas SQL
-	vRegistro vr ;
+	VRegistro vr ;
 
 	private static String Lista_usuarios="SELECT * FROM usuarios";
 
