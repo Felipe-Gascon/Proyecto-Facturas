@@ -82,8 +82,6 @@ public class Maquinaria {
 		}
 		return precios;
 	}
-	public void mostrarTrabajo(String trabajo){
-		System.out.println(trabajo);
-	}
+
 }
 

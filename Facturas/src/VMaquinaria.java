@@ -25,7 +25,7 @@ public class VMaquinaria extends JFrame {
 	JScrollPane scrollPane;
 	
 	private float superficie;
-
+private String total;
 
 	private JTextField textNom;
 	private JTextField textSup;
@@ -69,10 +69,10 @@ public class VMaquinaria extends JFrame {
 				{
 					
 					superficie=Float.parseFloat(textSup.getText());
-					vp=new VPrecios(dtm, superficie);
+					vp=new VPrecios(dtm, superficie,txtTot);
 					
 					vp.setVisible(true);
-					datos.setModel(dtm);
+					
 				}
 				//	getSuperficie();
 
@@ -136,8 +136,7 @@ public class VMaquinaria extends JFrame {
 					}
 
 
-					//	muestraDatos(dtm);
-
+					
 
 
 
@@ -145,11 +144,4 @@ public class VMaquinaria extends JFrame {
 
 
 
-	/*	public String getSuperficie()
-
-	{
-		 var= textSup.getText();
-		return var;
-
-	}*/
 }

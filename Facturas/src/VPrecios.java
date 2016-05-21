@@ -8,6 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,19 +24,21 @@ public class VPrecios extends JFrame {
 
 	@SuppressWarnings("rawtypes")
 	Hashtable trabajos;
-	DefaultTableModel dtm2 = new DefaultTableModel();
+	DefaultTableModel dtm2;
 	VMaquinaria vm ;
 	Float superficie;
 	Maquinaria ma;
+	JTextField total;
 
-	public String supe;
 	/**
 	 * Launch the application.
 	 */
 
 
 	@SuppressWarnings("rawtypes")
-	public VPrecios(DefaultTableModel miDTM, float sup) {
+	public VPrecios(DefaultTableModel miDTM, float sup,JTextField tot) {
+		total=tot;
+		dtm2=miDTM;
 		superficie=sup;
 		ma = new Maquinaria();
 		trabajos = ma.getTrabajos();
@@ -46,11 +49,7 @@ public class VPrecios extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		if (dtm2==null){
-			miDTM=new DefaultTableModel();
-		}else{
-			miDTM=dtm2;
-		}
+
 		comboTrabajos = new JComboBox();
 
 		comboTrabajos.addActionListener(new ActionListener() {
@@ -88,15 +87,9 @@ public class VPrecios extends JFrame {
 				filas[0]=tareas;
 				filas[1]=valor;
 				filas[2]=subtotal;
-				
+
 				dtm2.addRow(filas);
-				
-				ma.mostrarTrabajo(tareas);
-				//System.out.println(value);
-
-
-
-
+				acumularTotal();
 				VPrecios.this.dispose();
 			}
 		});
@@ -104,7 +97,7 @@ public class VPrecios extends JFrame {
 		contentPane.add(btnNewButton);
 		ponTrabajos();
 		//copiarTexto();
-	
+
 	}
 
 
@@ -127,9 +120,15 @@ public class VPrecios extends JFrame {
 
 	}
 
-	/*public void copiarTexto()
-	{
-
-		System.out.println(vm.obtenerJtxt());
-	}*/
+	public void acumularTotal() {
+		double tota = 0;
+		double subtotal;
+		for (int i = 0; i < dtm2.getRowCount(); i++) {
+			subtotal = Double.parseDouble(dtm2.getValueAt(i, 2).toString());
+			tota = tota + subtotal;
+			
+		}
+		String valorTotal=String.valueOf(tota);
+		VPrecios.this.total.setText(valorTotal);
+	}
 }

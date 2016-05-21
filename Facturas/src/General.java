@@ -8,7 +8,7 @@ public class General {
 	private static General instance = null;
 	ConexionDB facturas;
 	DefaultTableModel dtm;
-	private VRegistro vR;
+	private VIngreso vR;
 
 	@SuppressWarnings("unused")
 	private VMaquinaria vm;
@@ -46,7 +46,7 @@ public class General {
 		Usuarios usu=new Usuarios();
 		ArrayList<String> usuarios = usu.getUsuarios();
 		
-		vR = new VRegistro(usuarios);
+		vR = new VIngreso(usuarios);
 		vR.setVisible(true);
 	}
 	
