@@ -23,10 +23,8 @@ public class VMaquinaria extends JFrame {
 	Object[] datosTabla = new Object[columnas.length];
 	JTable datos;
 	JScrollPane scrollPane;
-	
-	private float superficie;
-private String total;
 
+	private float superficie;
 	private JTextField textNom;
 	private JTextField textSup;
 	private JLabel lblAo;
@@ -46,12 +44,12 @@ private String total;
 		setContentPane(contentPane);
 
 		if (dtm2==null){
-			dtm=new DefaultTableModel();
+			this.dtm=new DefaultTableModel();
 		}else{
-			dtm=dtm2;
+			this.dtm=dtm2;
 		}
-		
-		
+
+
 
 		this.datos= new JTable(dtm);
 
@@ -67,76 +65,76 @@ private String total;
 				}
 				else
 				{
-					
+
 					superficie=Float.parseFloat(textSup.getText());
 					vp=new VPrecios(dtm, superficie,txtTot);
-					
+
 					vp.setVisible(true);
-					
+
 				}
 				//	getSuperficie();
 
 
 			}
 		});
-					contentPane.setLayout(null);
+		contentPane.setLayout(null);
 
-					scrollPane = new JScrollPane(datos);
-					scrollPane.setBounds(5, 85, 419, 131);
-					contentPane.add(scrollPane);
-					contentPane.add(btnAadirDatos);
+		scrollPane = new JScrollPane(datos);
+		scrollPane.setBounds(5, 85, 419, 131);
+		contentPane.add(scrollPane);
+		contentPane.add(btnAadirDatos);
 
-					JButton btnEliminarDatos = new JButton("Eliminar Datos");
-					btnEliminarDatos.setBounds(158, 227, 103, 23);
-					contentPane.add(btnEliminarDatos);
+		JButton btnEliminarDatos = new JButton("Eliminar Datos");
+		btnEliminarDatos.setBounds(158, 227, 103, 23);
+		contentPane.add(btnEliminarDatos);
 
-					JButton btnModificar = new JButton("Modificar");
-					btnModificar.setBounds(316, 227, 108, 23);
-					contentPane.add(btnModificar);
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.setBounds(316, 227, 108, 23);
+		contentPane.add(btnModificar);
 
-					JLabel lblNombre = new JLabel("Nombre");
-					lblNombre.setBounds(5, 11, 56, 23);
-					contentPane.add(lblNombre);
+		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setBounds(5, 11, 56, 23);
+		contentPane.add(lblNombre);
 
-					textNom = new JTextField();
-					textNom.setBounds(60, 12, 86, 20);
-					contentPane.add(textNom);
-					textNom.setColumns(10);
+		textNom = new JTextField();
+		textNom.setBounds(60, 12, 86, 20);
+		contentPane.add(textNom);
+		textNom.setColumns(10);
 
-					JLabel lblSuperficie = new JLabel("Superficie");
-					lblSuperficie.setBounds(207, 11, 78, 23);
-					contentPane.add(lblSuperficie);
+		JLabel lblSuperficie = new JLabel("Superficie");
+		lblSuperficie.setBounds(207, 11, 78, 23);
+		contentPane.add(lblSuperficie);
 
-					textSup = new JTextField();
-					textSup.setBounds(286, 12, 86, 20);
-					contentPane.add(textSup);
-					textSup.setColumns(10);
+		textSup = new JTextField();
+		textSup.setBounds(286, 12, 86, 20);
+		contentPane.add(textSup);
+		textSup.setColumns(10);
 
-					lblAo = new JLabel("A\u00F1o");
-					lblAo.setBounds(5, 45, 32, 23);
-					contentPane.add(lblAo);
+		lblAo = new JLabel("A\u00F1o");
+		lblAo.setBounds(5, 45, 32, 23);
+		contentPane.add(lblAo);
 
-					txtYear = new JTextField();
-					txtYear.setBounds(60, 45, 86, 20);
-					contentPane.add(txtYear);
-					txtYear.setColumns(10);
-					lblNewLabel.setBounds(217, 45, 47, 20);
-					contentPane.add(lblNewLabel);
+		txtYear = new JTextField();
+		txtYear.setBounds(60, 45, 86, 20);
+		contentPane.add(txtYear);
+		txtYear.setColumns(10);
+		lblNewLabel.setBounds(217, 45, 47, 20);
+		contentPane.add(lblNewLabel);
 
-					txtTot = new JTextField();
-					txtTot.setEditable(false);
-					txtTot.setBounds(286, 43, 86, 20);
-					contentPane.add(txtTot);
-					txtTot.setColumns(10);
+		txtTot = new JTextField();
+		txtTot.setEditable(false);
+		txtTot.setBounds(286, 43, 86, 20);
+		contentPane.add(txtTot);
+		txtTot.setColumns(10);
 
-					for(int column=0;column<columnas.length;column++)
-					{
-						//System.out.println("Afegint dades al dtm");
-						this.dtm.addColumn(columnas[column]);
-					}
+		for(int column=0;column<columnas.length;column++)
+		{
+			//System.out.println("Afegint dades al dtm");
+			this.dtm.addColumn(columnas[column]);
+		}
 
 
-					
+
 
 
 
