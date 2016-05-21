@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
@@ -60,6 +61,8 @@ public class VRegistro extends JFrame {
 					String Pasword=textPass.getText();
 					try {
 						registro.InsertaUsuario(Nombre, Pasword);
+						JOptionPane.showMessageDialog(null,"Usuario Registrado");
+
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -88,10 +91,5 @@ public class VRegistro extends JFrame {
 	} 
 	
 	
-	public void insertaDatos()
-	{
-		nuevoUsuario [0]=textNombre.getText();
-		nuevoUsuario[1]=textPass.getPassword();
-		
-	}
+	
 }
