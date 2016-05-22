@@ -1,4 +1,3 @@
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +20,7 @@ public class VIngreso extends JFrame {
 	Statement st = null;
 	ResultSet rs = null;
 	private JPanel contentPane;
-	private JPasswordField txtPass;
+	public JPasswordField txtPass;
 	DefaultTableModel dtm = new DefaultTableModel();
 	JTextField txtUsuario;
 	private JTextField msjInfo;
@@ -51,10 +50,12 @@ public class VIngreso extends JFrame {
 
 		txtUsuario = new JTextField();
 		txtUsuario.setBounds(175, 63, 86, 20);
+		txtUsuario.setText("Felipe");
 		getContentPane().add(txtUsuario);
 
 		txtPass = new JPasswordField();
 		txtPass.setBounds(175, 141, 86, 20);
+		txtPass.setText("holahola");
 		getContentPane().add(txtPass);
 
 

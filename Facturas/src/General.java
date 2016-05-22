@@ -6,21 +6,17 @@ import javax.swing.table.DefaultTableModel;
 public class General {
 
 	private static General instance = null;
-	ConexionDB facturas;
-	DefaultTableModel dtm;
+	private ConexionDB conn;
+	public DefaultTableModel dtm;
 	private VIngreso vR;
-
-	@SuppressWarnings("unused")
-	private VMaquinaria vm;
-
 	private General() 
 	{
-		facturas=ConexionDB.getInstance("localhost", "facturas", "Felipe", "");
+		this.conn=ConexionDB.getInstance("localhost", "facturas", "Felipe", "");
 
-		if(facturas.connectDB()==true)
+		if(this.conn.connectDB()==true)
 		{
 			System.out.println("Conexion Exitosa");
-			muestraVentana();
+			this.muestraVentana();
 		}
 		else
 		{

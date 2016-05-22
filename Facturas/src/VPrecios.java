@@ -23,12 +23,12 @@ public class VPrecios extends JFrame {
 
 
 	@SuppressWarnings("rawtypes")
-	Hashtable trabajos;
-	DefaultTableModel dtm2;
-	VMaquinaria vm ;
-	Float superficie;
-	Maquinaria ma;
-	JTextField total;
+	private Hashtable trabajos;
+	private DefaultTableModel dtm2;
+	public VMaquinaria vm ;
+	public float superficie;
+	private Maquinaria ma;
+	private JTextField total;
 
 	/**
 	 * Launch the application.
@@ -36,12 +36,12 @@ public class VPrecios extends JFrame {
 
 
 	@SuppressWarnings("rawtypes")
-	public VPrecios(DefaultTableModel miDTM, float sup,JTextField tot) {
-		total=tot;
-		dtm2=miDTM;
-		superficie=sup;
-		ma = new Maquinaria();
-		trabajos = ma.getTrabajos();
+	public VPrecios(DefaultTableModel miDTM, float superficie,JTextField tot) {
+		this.total=tot;
+		this.dtm2=miDTM;
+		this.superficie=superficie;
+		this.ma = new Maquinaria();
+		this.trabajos = ma.getTrabajos();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -75,22 +75,23 @@ public class VPrecios extends JFrame {
 
 
 
-		JButton btnNewButton = new JButton("Cerrar");
+		JButton btnNewButton = new JButton("Guardar");
+		VPrecios currentWindow = this;
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String tareas = comboTrabajos.getSelectedItem().toString();
 				String value = String.valueOf (trabajos.get(tareas));
 				float valor = Float.parseFloat(value);
 
-				float subtotal = valor*VPrecios.this.superficie;
+				float subtotal =valor*superficie;
 				Object filas[] = new Object[3];
 				filas[0]=tareas;
 				filas[1]=valor;
 				filas[2]=subtotal;
 
-				dtm2.addRow(filas);
+				miDTM.addRow(filas);
+				currentWindow.dispose();
 				acumularTotal();
-				VPrecios.this.dispose();
 			}
 		});
 		btnNewButton.setBounds(118, 219, 89, 31);

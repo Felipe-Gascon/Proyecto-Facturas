@@ -59,7 +59,7 @@ public class VRegistro extends JFrame {
 				@SuppressWarnings("deprecation")
 				String Pasword=textPass.getText();
 				try {
-					registro.InsertaUsuario(Nombre, Pasword);
+					registro.insertaUsuario(Nombre, Pasword);
 					JOptionPane.showMessageDialog(null,"Usuario Registrado");
 
 				} catch (Exception e) {

@@ -3,23 +3,22 @@ import java.sql.Statement;
 
 public class Registro {
 
-	ConexionDB conn;
-	Statement st = null;
-	int rs ;
-	int resultado;
+	private ConexionDB conn;
+	public int rs;
+	private	int resultado;
 	public Registro()
 	{
 		this.conn = ConexionDB.getInstance();
 	}
 	
 	@SuppressWarnings("static-access")
-	public int InsertaUsuario(String Nombre, String Pasword) throws Exception
+	public int insertaUsuario(String Nombre, String Pasword) throws Exception
 	{
-		
-		if(conn.conexion!=null){
-			this.st =this.conn.getConexion().createStatement();
+		 Statement st = null;
+		if(this.conn.conexion!=null){
+			st =this.conn.getConexion().createStatement();
 			String query="insert into usuarios (nombre,clave) values('"+Nombre+"','"+Pasword+"')";
-			this.rs = this.st.executeUpdate(query);
+			this.rs = st.executeUpdate(query);
 			this.resultado=1;
 
 		}
@@ -30,5 +29,6 @@ public class Registro {
 		return resultado;
 	}
 
-
+	
+	
 }

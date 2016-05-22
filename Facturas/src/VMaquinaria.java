@@ -85,6 +85,12 @@ public class VMaquinaria extends JFrame {
 		contentPane.add(btnAadirDatos);
 
 		JButton btnEliminarDatos = new JButton("Eliminar Datos");
+		btnEliminarDatos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dtm.removeRow(datos.getSelectedRow());
+				
+			}
+		});
 		btnEliminarDatos.setBounds(158, 227, 103, 23);
 		contentPane.add(btnEliminarDatos);
 
