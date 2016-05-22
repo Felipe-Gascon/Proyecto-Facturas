@@ -9,7 +9,6 @@ public class Usuarios {
 	private	ConexionDB conn;
 
 	//Consultas SQL
-	private VIngreso vr ;
 
 	private static String Lista_usuarios="SELECT * FROM usuarios";
 

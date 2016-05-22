@@ -18,11 +18,11 @@ import javax.swing.table.DefaultTableModel;
 public class VMaquinaria extends JFrame {
 	public static String supe;
 	private JPanel contentPane;
-	DefaultTableModel dtm;
-	String columnas[]={"Trabajos_Maq","Precios","Subtotal"};
-	Object[] datosTabla = new Object[columnas.length];
-	JTable datos;
-	JScrollPane scrollPane;
+	private DefaultTableModel dtm;
+	private String columnas[]={"Trabajos_Maq","Precios","Subtotal"};
+	//Object[] datosTabla = new Object[columnas.length];
+	private JTable datos;
+	private JScrollPane scrollPane;
 
 	private float superficie;
 	private JTextField textNom;
@@ -32,13 +32,14 @@ public class VMaquinaria extends JFrame {
 	private final JLabel lblNewLabel = new JLabel("Total");
 	private JTextField txtTot;
 	private VPrecios vp;
+	private VTratamiento vt;
 
 
 	public VMaquinaria(DefaultTableModel dtm2) {
 		setResizable(false);
 		//System.out.println("constructor sense parametres");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 443, 354);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -91,12 +92,8 @@ public class VMaquinaria extends JFrame {
 				
 			}
 		});
-		btnEliminarDatos.setBounds(158, 227, 103, 23);
+		btnEliminarDatos.setBounds(321, 227, 103, 23);
 		contentPane.add(btnEliminarDatos);
-
-		JButton btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(316, 227, 108, 23);
-		contentPane.add(btnModificar);
 
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(5, 11, 56, 23);
@@ -132,6 +129,27 @@ public class VMaquinaria extends JFrame {
 		txtTot.setBounds(286, 43, 86, 20);
 		contentPane.add(txtTot);
 		txtTot.setColumns(10);
+		
+		JButton btnVsembrado = new JButton("VSembrado");
+		btnVsembrado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnVsembrado.setBounds(117, 227, 89, 23);
+		contentPane.add(btnVsembrado);
+		
+		JButton btnTratamientos = new JButton("Tratamientos");
+		btnTratamientos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vt=new VTratamiento(dtm);
+				vt.setVisible(true);
+				VMaquinaria.this.dispose();
+			}
+				
+		});
+		btnTratamientos.setBounds(216, 227, 95, 23);
+		contentPane.add(btnTratamientos);
 
 		for(int column=0;column<columnas.length;column++)
 		{
@@ -145,7 +163,4 @@ public class VMaquinaria extends JFrame {
 
 
 	}
-
-
-
 }

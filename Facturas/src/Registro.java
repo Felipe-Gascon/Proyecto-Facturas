@@ -10,11 +10,11 @@ public class Registro {
 	{
 		this.conn = ConexionDB.getInstance();
 	}
-	
+
 	@SuppressWarnings("static-access")
 	public int insertaUsuario(String Nombre, String Pasword) throws Exception
 	{
-		 Statement st = null;
+		Statement st = null;
 		if(this.conn.conexion!=null){
 			st =this.conn.getConexion().createStatement();
 			String query="insert into usuarios (nombre,clave) values('"+Nombre+"','"+Pasword+"')";
@@ -29,6 +29,6 @@ public class Registro {
 		return resultado;
 	}
 
-	
-	
+
+
 }
