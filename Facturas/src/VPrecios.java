@@ -50,19 +50,7 @@ public class VPrecios extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		comboTrabajos = new JComboBox();
-
-		comboTrabajos.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				//  String tarea = comboTrabajos.getSelectedItem().toString();
-				// System.out.println(tarea+ "\t "+ trabajos.get(tarea));
-
-
-			}
-		});   
+		comboTrabajos = new JComboBox(); 
 		comboTrabajos.setBounds(10, 63, 331, 20);
 		contentPane.add(comboTrabajos);
 
@@ -76,7 +64,6 @@ public class VPrecios extends JFrame {
 
 
 		JButton btnNewButton = new JButton("Guardar");
-		VPrecios currentWindow = this;
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String tareas = comboTrabajos.getSelectedItem().toString();
@@ -90,7 +77,7 @@ public class VPrecios extends JFrame {
 				filas[2]=subtotal;
 
 				miDTM.addRow(filas);
-				currentWindow.dispose();
+				VPrecios.this.dispose();
 				acumularTotal();
 			}
 		});
@@ -127,7 +114,7 @@ public class VPrecios extends JFrame {
 		for (int i = 0; i < dtm2.getRowCount(); i++) {
 			subtotal = Double.parseDouble(dtm2.getValueAt(i, 2).toString());
 			tota = tota + subtotal;
-			
+
 		}
 		String valorTotal=String.valueOf(tota);
 		VPrecios.this.total.setText(valorTotal);
