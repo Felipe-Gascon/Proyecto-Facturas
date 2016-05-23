@@ -105,6 +105,7 @@ public class VTratamiento extends JFrame {
 				{
 					superficie=Float.parseFloat(textSup.getText());
 					nt= new NuevoTratamiento(dtm3, superficie, textTot);
+					
 					nt.setVisible(true);
 					
 				}
