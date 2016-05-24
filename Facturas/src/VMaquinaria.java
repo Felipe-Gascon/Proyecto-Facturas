@@ -154,7 +154,7 @@ public class VMaquinaria extends JFrame {
 		for(int column=0;column<columnas.length;column++)
 		{
 			//System.out.println("Afegint dades al dtm");
-			this.dtm.addColumn(columnas[column]);
+			this.dtm.addColumn(this.columnas[column]);
 		}
 
 

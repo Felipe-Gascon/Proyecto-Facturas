@@ -132,7 +132,7 @@ public class VTratamiento extends JFrame {
 		
 		for(int columna=0;columna<this.col.length;columna++)
 		{
-			this.dtm3.addColumn(col[columna]);
+			this.dtm3.addColumn(this.col[columna]);
 		}
 	}
 }
