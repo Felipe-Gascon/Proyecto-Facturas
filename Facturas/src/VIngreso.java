@@ -21,10 +21,11 @@ public class VIngreso extends JFrame {
 	ResultSet rs = null;
 	private JPanel contentPane;
 	public JPasswordField txtPass;
-	DefaultTableModel dtm = new DefaultTableModel();
-	JTextField txtUsuario;
+	private DefaultTableModel dtm = new DefaultTableModel();
+	private JTextField txtUsuario;
 	private JTextField msjInfo;
 	public ConexionDB facturas;
+	private VMenu vm;
 
 	public VIngreso(ArrayList<String> usuarios) {
 		setResizable(false);
@@ -51,10 +52,12 @@ public class VIngreso extends JFrame {
 		txtUsuario = new JTextField();
 		txtUsuario.setBounds(175, 63, 86, 20);
 		getContentPane().add(txtUsuario);
-
+		txtUsuario.setText("Felipe");
+		
 		txtPass = new JPasswordField();
 		txtPass.setBounds(175, 141, 86, 20);
 		getContentPane().add(txtPass);
+		txtPass.setText("holahola");
 
 
 		JButton btnEntrar = new JButton("Entrar");
@@ -66,9 +69,10 @@ public class VIngreso extends JFrame {
 				try{
 					if(usuarios.existe(txtUsuario.getText(), String.valueOf(txtPass.getPassword())))
 					{
-						VMaquinaria vm= new VMaquinaria(dtm);
+						vm= new VMenu(dtm);
 						vm.setVisible(true);
 						VIngreso.this.dispose();
+						
 					}
 					else{
 						msjInfo.setText("Usuario no Permitido");

@@ -32,14 +32,14 @@ public class VMaquinaria extends JFrame {
 	private final JLabel lblNewLabel = new JLabel("Total");
 	private JTextField txtTot;
 	private VPrecios vp;
-	private VTratamiento vt;
+	private VMenu vm;
 
 
 	public VMaquinaria(DefaultTableModel dtm2) {
 		setResizable(false);
 		//System.out.println("constructor sense parametres");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 443, 354);
+		setBounds(100, 100, 443, 305);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -55,7 +55,7 @@ public class VMaquinaria extends JFrame {
 		this.datos= new JTable(dtm);
 
 		JButton btnAadirDatos = new JButton("A\u00F1adir Datos");
-		btnAadirDatos.setBounds(5, 227, 103, 23);
+		btnAadirDatos.setBounds(118, 227, 103, 23);
 		btnAadirDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//obtenerJtxt();
@@ -88,11 +88,18 @@ public class VMaquinaria extends JFrame {
 		JButton btnEliminarDatos = new JButton("Eliminar Datos");
 		btnEliminarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dtm.removeRow(datos.getSelectedRow());
+				if(datos.getRowCount()==0){
+					JOptionPane.showMessageDialog(null, "La tabla Esta Vacia");
+				}
+				else
+				{
+					dtm.removeRow(datos.getSelectedRow());
+					txtTot.setText("0");
+				}
 				
 			}
 		});
-		btnEliminarDatos.setBounds(321, 227, 103, 23);
+		btnEliminarDatos.setBounds(261, 227, 103, 23);
 		contentPane.add(btnEliminarDatos);
 
 		JLabel lblNombre = new JLabel("Nombre");
@@ -129,27 +136,20 @@ public class VMaquinaria extends JFrame {
 		txtTot.setBounds(286, 43, 86, 20);
 		contentPane.add(txtTot);
 		txtTot.setColumns(10);
+		txtTot.setText("0");
 		
-		JButton btnVsembrado = new JButton("VSembrado");
-		btnVsembrado.addActionListener(new ActionListener() {
+		JButton btnAtras = new JButton("Atras");
+		btnAtras.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnVsembrado.setBounds(117, 227, 89, 23);
-		contentPane.add(btnVsembrado);
-		
-		JButton btnTratamientos = new JButton("Tratamientos");
-		btnTratamientos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				vt=new VTratamiento(dtm);
-				vt.setVisible(true);
+				vm = new VMenu(dtm);
+				vm.setVisible(true);
 				VMaquinaria.this.dispose();
-			}
 				
+			}
 		});
-		btnTratamientos.setBounds(216, 227, 95, 23);
-		contentPane.add(btnTratamientos);
+		btnAtras.setBounds(5, 227, 89, 23);
+		contentPane.add(btnAtras);
 
 		for(int column=0;column<columnas.length;column++)
 		{
