@@ -21,7 +21,7 @@ public class VIngreso extends JFrame {
 	ResultSet rs = null;
 	private JPanel contentPane;
 	public JPasswordField txtPass;
-	private DefaultTableModel dtm = new DefaultTableModel();
+	private DefaultTableModel dtm;
 	private JTextField txtUsuario;
 	private JTextField msjInfo;
 	public ConexionDB facturas;
@@ -29,6 +29,7 @@ public class VIngreso extends JFrame {
 
 	public VIngreso(ArrayList<String> usuarios) {
 		setResizable(false);
+		dtm = new DefaultTableModel();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

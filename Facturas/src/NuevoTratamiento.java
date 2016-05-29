@@ -1,32 +1,35 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 
+@SuppressWarnings("serial")
 public class NuevoTratamiento extends JFrame {
 
 	private JPanel contentPane;
+	@SuppressWarnings("rawtypes")
 	private Hashtable tratamientos;
+	@SuppressWarnings("unused")
 	private float superficie;
 	private Tratamientos trat;
 	private JTextField total;
-	private DefaultTableModel dtm2;
+	private DefaultTableModel dtm;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboTratamiento;
 	private JButton Guardar;
-	public NuevoTratamiento(DefaultTableModel miDtm, float superficie, JTextField tot) {
-		this.dtm2=miDtm;
+	@SuppressWarnings("rawtypes")
+	public NuevoTratamiento(DefaultTableModel modelo, float superficie, JTextField tot) {
+		this.dtm=modelo;
 		this.superficie=superficie;
 		this.total=tot;
 		this.trat= new Tratamientos();
@@ -60,7 +63,7 @@ public class NuevoTratamiento extends JFrame {
 				datos[0]=tratamiento;
 				datos[1]=valor;
 				datos[2]=subtotal;
-				miDtm.addRow(datos);
+				modelo.addRow(datos);
 				NuevoTratamiento.this.dispose();
 				acumularTotal();
 				
@@ -73,6 +76,7 @@ public class NuevoTratamiento extends JFrame {
 		ponTratamientos();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void ponTratamientos()
 	{
 		String clave;
@@ -89,8 +93,8 @@ public class NuevoTratamiento extends JFrame {
 	public void acumularTotal() {
 		double tota = 0;
 		double subtotal;
-		for (int i = 0; i < dtm2.getRowCount(); i++) {
-			subtotal = Double.parseDouble(dtm2.getValueAt(i, 2).toString());
+		for (int i = 0; i < dtm.getRowCount(); i++) {
+			subtotal = Double.parseDouble(dtm.getValueAt(i, 2).toString());
 			tota = tota + subtotal;
 
 		}

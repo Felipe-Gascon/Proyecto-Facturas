@@ -1,24 +1,20 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-
-import java.awt.Font;
-
 import javax.swing.JTable;
-import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-
+@SuppressWarnings("serial")
 public class VTratamiento extends JFrame {
 
 	private JPanel contentPane;
@@ -27,19 +23,19 @@ public class VTratamiento extends JFrame {
 	private JTextField textSup;
 	private JTextField textTot;
 	private JTable tratamientos;
-	private DefaultTableModel dtm3;
+	private DefaultTableModel dtm;
 	private String col[]={"Tratamiento","Precios","Subtotal"};
 	private float superficie;
 	private NuevoTratamiento nt ;
 	private JScrollPane scrollPane;
+	@SuppressWarnings("unused")
 	private VMenu vm;
 
-	public VTratamiento(DefaultTableModel eldtm2) {
-		if (eldtm2==null){
-			this.dtm3=new DefaultTableModel();
-		}else{
-			this.dtm3=eldtm2;
-		}
+	public VTratamiento(VMenu vm) {
+
+		this.dtm=new DefaultTableModel();
+
+
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 443, 354);
@@ -56,7 +52,7 @@ public class VTratamiento extends JFrame {
 		lblAo.setBounds(10, 49, 46, 14);
 		contentPane.add(lblAo);
 
-		this.tratamientos= new JTable(dtm3);
+		this.tratamientos= new JTable(dtm);
 
 		scrollPane = new JScrollPane(tratamientos);
 		scrollPane.setBounds(5, 85, 419, 131);
@@ -105,7 +101,7 @@ public class VTratamiento extends JFrame {
 				else
 				{
 					superficie=Float.parseFloat(textSup.getText());
-					nt= new NuevoTratamiento(dtm3, superficie, textTot);
+					nt= new NuevoTratamiento(dtm, superficie, textTot);
 
 					nt.setVisible(true);
 
@@ -118,7 +114,6 @@ public class VTratamiento extends JFrame {
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				vm = new VMenu(dtm3);
 				vm.setVisible(true);
 				VTratamiento.this.dispose();
 			}
@@ -134,7 +129,7 @@ public class VTratamiento extends JFrame {
 				}
 				else
 				{
-					dtm3.removeRow(tratamientos.getSelectedRow());
+					dtm.removeRow(tratamientos.getSelectedRow());
 					textTot.setText("0");
 				}
 			}
@@ -144,7 +139,7 @@ public class VTratamiento extends JFrame {
 
 		for(int columna=0;columna<this.col.length;columna++)
 		{
-			this.dtm3.addColumn(this.col[columna]);
+			this.dtm.addColumn(this.col[columna]);
 		}
 	}
 }

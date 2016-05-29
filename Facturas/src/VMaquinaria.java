@@ -32,10 +32,13 @@ public class VMaquinaria extends JFrame {
 	private final JLabel lblNewLabel = new JLabel("Total");
 	private JTextField txtTot;
 	private VPrecios vp;
+	@SuppressWarnings("unused")
 	private VMenu vm;
 
 
-	public VMaquinaria(DefaultTableModel dtm2) {
+	public VMaquinaria( VMenu vm) {
+		this.dtm=new DefaultTableModel();
+		this.vm=vm;
 		setResizable(false);
 		//System.out.println("constructor sense parametres");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,15 +47,17 @@ public class VMaquinaria extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
-		if (dtm2==null){
-			this.dtm=new DefaultTableModel();
-		}else{
-			this.dtm=dtm2;
-		}
 
 
 
 		this.datos= new JTable(dtm);
+		for(int column=0;column<columnas.length;column++)
+		{
+			//System.out.println("Afegint dades al dtm");
+			this.dtm.addColumn(this.columnas[column]);
+		}
+
+
 
 		JButton btnAadirDatos = new JButton("A\u00F1adir Datos");
 		btnAadirDatos.setBounds(118, 227, 103, 23);
@@ -96,7 +101,7 @@ public class VMaquinaria extends JFrame {
 					dtm.removeRow(datos.getSelectedRow());
 					txtTot.setText("0");
 				}
-				
+
 			}
 		});
 		btnEliminarDatos.setBounds(261, 227, 103, 23);
@@ -137,26 +142,19 @@ public class VMaquinaria extends JFrame {
 		contentPane.add(txtTot);
 		txtTot.setColumns(10);
 		txtTot.setText("0");
-		
+
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				vm = new VMenu(dtm);
 				vm.setVisible(true);
 				VMaquinaria.this.dispose();
-				
+
+
+
 			}
 		});
 		btnAtras.setBounds(5, 227, 89, 23);
 		contentPane.add(btnAtras);
-
-		for(int column=0;column<columnas.length;column++)
-		{
-			//System.out.println("Afegint dades al dtm");
-			this.dtm.addColumn(this.columnas[column]);
-		}
-
 
 
 
