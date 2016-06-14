@@ -53,12 +53,12 @@ public class VIngreso extends JFrame {
 		txtUsuario = new JTextField();
 		txtUsuario.setBounds(175, 63, 86, 20);
 		getContentPane().add(txtUsuario);
-		txtUsuario.setText("Felipe");
+		
 		
 		txtPass = new JPasswordField();
 		txtPass.setBounds(175, 141, 86, 20);
 		getContentPane().add(txtPass);
-		txtPass.setText("holahola");
+		
 
 
 		JButton btnEntrar = new JButton("Entrar");
